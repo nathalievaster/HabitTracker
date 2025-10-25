@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "3786fb04-3326-4a1a-a574-a369b882426f",
+    "Name": "Plugga C#",
+    "TargetPerWeek": 2,
+    "CreatedAt": "2025-10-25T16:26:19.4924586Z",
+    "IsArchived": false
+  },
+  {
+    "Id": "0cea82e7-2ad2-4bfd-ab63-cd3d7d33233f",
+    "Name": "Plugga Projektledning",
+    "TargetPerWeek": 2,
+    "CreatedAt": "2025-10-25T16:26:48.4911492Z",
+    "IsArchived": false
+  },
+  {
+    "Id": "8f1383da-84dd-41f3-8e29-86f9159b6b8c",
+    "Name": "Plugga JavaScript",
+    "TargetPerWeek": 3,
+    "CreatedAt": "2025-10-25T16:31:23.8703134Z",
+    "IsArchived": false
+  },
+  {
+    "Id": "d6111f58-9757-4524-ac80-c97b76f4e879",
+    "Name": "Plugga JavaScript",
+    "TargetPerWeek": 3,
+    "CreatedAt": "2025-10-25T16:31:56.543649Z",
+    "IsArchived": false
+  }
+]
