@@ -71,6 +71,14 @@ class Program
     {
         Console.Write("Namn: ");
         var name = Console.ReadLine() ?? "";
+        // Kontrollera att namnet inte är tomt
+        if (string.IsNullOrWhiteSpace(name))
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Namnet får inte vara tomt. Försök igen.");
+        Console.ResetColor();
+        return;
+    }
         Console.Write("Mål/vecka (antal pomodoros): ");
         if (!int.TryParse(Console.ReadLine(), out var target))
         {
@@ -207,6 +215,16 @@ class Program
         Console.Write("Nytt namn: ");
         var newName = Console.ReadLine() ?? "";
 
+        // Kontrollera att namnet inte är tomt
+        if (string.IsNullOrWhiteSpace(newName))
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Namnet får inte vara tomt. Försök igen.");
+            Console.ResetColor();
+            return;
+        }
+
+
         bool success = store.UpdateHabitName(id, newName);
 
         if (success)
@@ -252,7 +270,7 @@ class Program
             Console.ResetColor();
         }
         else
-        { 
+        {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Hittade inte vanan.");
             Console.ResetColor();

@@ -26,5 +26,12 @@
     "TargetPerWeek": 3,
     "CreatedAt": "2025-10-25T16:31:56.543649Z",
     "IsArchived": false
+  },
+  {
+    "Id": "bcc07ca5-6dc1-4c17-9d84-07c9f7cccb36",
+    "Name": "L\u00E4sa bok",
+    "TargetPerWeek": 5,
+    "CreatedAt": "2025-10-25T17:32:50.6582769Z",
+    "IsArchived": false
   }
 ]
