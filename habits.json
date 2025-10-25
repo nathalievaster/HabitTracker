@@ -40,5 +40,12 @@
     "TargetPerWeek": 5,
     "CreatedAt": "2025-10-25T18:20:46.9435166Z",
     "IsArchived": false
+  },
+  {
+    "Id": "475895df-9e16-4d79-96dd-72132677fb93",
+    "Name": "Plugga franska",
+    "TargetPerWeek": 5,
+    "CreatedAt": "2025-10-25T18:35:13.1376933Z",
+    "IsArchived": false
   }
 ]

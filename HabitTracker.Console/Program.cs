@@ -84,13 +84,17 @@ class Program
             Console.WriteLine("Namnet får inte vara tomt. Försök igen.");
             Console.ResetColor();
         }
-        Console.Write("Mål/vecka (antal pomodoros): ");
-        if (!int.TryParse(Console.ReadLine(), out var target))
+
+        int target;
+        while (true)
         {
+            Console.Write("Mål/vecka (antal pomodoros): ");
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out target) && target > 0)
+                break; // målet är giltigt, gå vidare
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Felaktigt tal.");
             Console.ResetColor();
-            return;
         }
 
         try
@@ -129,13 +133,19 @@ class Program
     // --------Logga pomodoro--------
     static void LogPomodoro(JsonStore store)
     {
-        Console.Write("Ange HabitId: ");
-        if (!Guid.TryParse(Console.ReadLine(), out var habitId))
+        Guid habitId;
+
+        while (true)
         {
+            Console.Write("Ange HabitId: ");
+            var input = Console.ReadLine();
+
+            if (Guid.TryParse(input, out habitId))
+                break; // giltigt, gå vidare
+
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Felaktigt Id.");
+            Console.WriteLine("Felaktigt Id. Försök igen.");
             Console.ResetColor();
-            return;
         }
 
         Console.Write("Minuter: ");
@@ -143,7 +153,6 @@ class Program
 
         int minutes;
 
-        // Om användaren inte skrev något alls, använd 25 och skriv ut info
         if (string.IsNullOrWhiteSpace(minutesText))
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -151,8 +160,11 @@ class Program
             minutes = 25;
             Console.ResetColor();
         }
-        // Om användaren skrev något som inte är ett giltigt tal
-        else if (!int.TryParse(minutesText, out minutes))
+        else if (int.TryParse(minutesText, out var parsed) && parsed > 0)
+        {
+            minutes = parsed; //giltigt tal
+        }
+        else
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Felaktigt tal. Använder 25 minuter som standard.");
@@ -180,13 +192,19 @@ class Program
     // --------Visa sessions för en vana--------
     static void ShowSessionsForHabit(JsonStore store)
     {
-        Console.Write("Ange HabitId: ");
-        if (!Guid.TryParse(Console.ReadLine(), out var habitId))
+        Guid habitId;
+
+        while (true)
         {
+            Console.Write("Ange HabitId: ");
+            var input = Console.ReadLine();
+
+            if (Guid.TryParse(input, out habitId))
+                break; // giltigt ID, gå vidare
+
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Felaktigt Id.");
+            Console.WriteLine("Felaktigt Id. Försök igen.");
             Console.ResetColor();
-            return;
         }
 
         var sessions = store.GetSessionsForHabit(habitId);
@@ -208,16 +226,22 @@ class Program
     // --------Byt namn på vana--------
     static void RenameHabit(JsonStore store)
     {
-        Console.Write("HabitId: ");
-        if (!Guid.TryParse(Console.ReadLine(), out var id))
+        Guid habitId;
+
+        while (true)
         {
+            Console.Write("Ange HabitId: ");
+            var input = Console.ReadLine();
+
+            if (Guid.TryParse(input, out habitId))
+                break; // giltigt ID, gå vidare
+
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Felaktigt Id.");
+            Console.WriteLine("Felaktigt Id. Försök igen.");
             Console.ResetColor();
-            return;
         }
         string newName = "";
-        
+
         while (true)
         {
             Console.Write("Nytt namn: ");
@@ -229,9 +253,9 @@ class Program
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Namnet får inte vara tomt. Försök igen.");
             Console.ResetColor();
-        }   
+        }
 
-        bool success = store.UpdateHabitName(id, newName);
+        bool success = store.UpdateHabitName(habitId, newName);
 
         if (success)
         {
@@ -249,25 +273,38 @@ class Program
     // --------Ändra mål/vecka--------
     static void UpdateHabitTarget(JsonStore store)
     {
-        Console.Write("HabitId: ");
-        if (!Guid.TryParse(Console.ReadLine(), out var id))
+        Guid habitId;
+
+        while (true)
         {
+            Console.Write("Ange HabitId: ");
+            var input = Console.ReadLine();
+
+            if (Guid.TryParse(input, out habitId))
+                break; // giltigt ID, gå vidare
+
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Felaktigt Id.");
+            Console.WriteLine("Felaktigt Id. Försök igen.");
             Console.ResetColor();
-            return;
         }
 
-        Console.Write("Nytt mål/vecka: ");
-        if (!int.TryParse(Console.ReadLine(), out var newTarget))
+        int newTarget;
+
+        while (true)
         {
+            Console.Write("Nytt mål/vecka: ");
+            var input = Console.ReadLine();
+
+            // giltigt om det går att parsa och är större än 0
+            if (int.TryParse(input, out newTarget) && newTarget > 0)
+                break;
+
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Felaktigt tal.");
+            Console.WriteLine("Felaktigt tal. Ange ett positivt heltal.");
             Console.ResetColor();
-            return;
         }
 
-        bool success = store.UpdateHabitTarget(id, newTarget);
+        bool success = store.UpdateHabitTarget(habitId, newTarget);
 
         if (success)
         {
@@ -285,13 +322,20 @@ class Program
     // --------Ta bort vana--------
     static void DeleteHabit(JsonStore store)
     {
-        Console.Write("HabitId att ta bort: ");
-        if (!Guid.TryParse(Console.ReadLine(), out var id))
+        Guid id;
+
+        // Loop tills användaren skriver ett giltigt HabitId
+        while (true)
         {
+            Console.Write("HabitId att ta bort: ");
+            var input = Console.ReadLine();
+
+            if (Guid.TryParse(input, out id))
+                break; // giltigt, fortsätt
+
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Felaktigt Id.");
+            Console.WriteLine("Felaktigt Id. Försök igen.");
             Console.ResetColor();
-            return;
         }
 
         bool success = store.DeleteHabit(id);
@@ -309,4 +353,5 @@ class Program
             Console.ResetColor();
         }
     }
+
 }
