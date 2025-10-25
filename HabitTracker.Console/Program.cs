@@ -69,16 +69,21 @@ class Program
     //--------Skapa vanor--------
     static void CreateHabit(JsonStore store)
     {
-        Console.Write("Namn: ");
-        var name = Console.ReadLine() ?? "";
-        // Kontrollera att namnet inte är tomt
-        if (string.IsNullOrWhiteSpace(name))
-    {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Namnet får inte vara tomt. Försök igen.");
-        Console.ResetColor();
-        return;
-    }
+        string name = "";
+
+        // Loop tills användaren skriver ett giltigt namn
+        while (true)
+        {
+            Console.Write("Namn: ");
+            name = Console.ReadLine() ?? "";
+
+            if (!string.IsNullOrWhiteSpace(name))
+                break; // namnet är giltigt, gå vidare
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Namnet får inte vara tomt. Försök igen.");
+            Console.ResetColor();
+        }
         Console.Write("Mål/vecka (antal pomodoros): ");
         if (!int.TryParse(Console.ReadLine(), out var target))
         {
@@ -211,19 +216,20 @@ class Program
             Console.ResetColor();
             return;
         }
-
-        Console.Write("Nytt namn: ");
-        var newName = Console.ReadLine() ?? "";
-
-        // Kontrollera att namnet inte är tomt
-        if (string.IsNullOrWhiteSpace(newName))
+        string newName = "";
+        
+        while (true)
         {
+            Console.Write("Nytt namn: ");
+            newName = Console.ReadLine() ?? "";
+
+            if (!string.IsNullOrWhiteSpace(newName))
+                break; // namnet är giltigt, gå vidare
+
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Namnet får inte vara tomt. Försök igen.");
             Console.ResetColor();
-            return;
-        }
-
+        }   
 
         bool success = store.UpdateHabitName(id, newName);
 

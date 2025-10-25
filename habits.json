@@ -33,5 +33,12 @@
     "TargetPerWeek": 5,
     "CreatedAt": "2025-10-25T17:32:50.6582769Z",
     "IsArchived": false
+  },
+  {
+    "Id": "343fcb83-1eee-4afb-a057-afd916e15911",
+    "Name": "Plugga engelska",
+    "TargetPerWeek": 5,
+    "CreatedAt": "2025-10-25T18:20:46.9435166Z",
+    "IsArchived": false
   }
 ]
