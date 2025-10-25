@@ -88,4 +88,62 @@ public class JsonStore
         Save();
         return true;
     }
+
+    //Sessions
+
+    // Logga en session på 25 minuter som standard om inget annat anges
+    public void LogPomodoro(Guid habitId, int minutes = 25, string? notes = null)
+    {
+        var now = DateTime.Now; // Hämtar nuvarande tid
+        var session = new Session
+        {
+            HabitId = habitId,
+            StartTime = now.AddMinutes(-minutes), // Backar tiden 25 minuter eller så många minuter som anges
+            EndTime = now,
+            Notes = notes
+        };
+        _sessions.Add(session); // Lägger till sessionen i listan
+        Save();
+    }
+
+    // Hämtar alla sessioner för en specifik vana, sorterade efter starttid (nyaste först)
+    public List<Session> GetSessionsForHabit(Guid habitId)
+    {
+        var result = new List<Session>();
+        foreach (var s in _sessions)
+        {
+            if (s.HabitId == habitId)
+                result.Add(s);
+        }
+
+        // Sortera nyast först (desc på StartTime)
+        result.Sort((a, b) => b.StartTime.CompareTo(a.StartTime));
+        return result;
+    }
+
+    // Hjälpmetod för att räkna ut veckans start- och slutdatum (måndag till söndag)
+    private static (DateTime start, DateTime end) WeekBounds(DateTime day)
+    {
+        var start = day.Date;
+        // Loopar bakåt till måndag
+        while (start.DayOfWeek != DayOfWeek.Monday)
+            start = start.AddDays(-1);
+
+        var end = start.AddDays(7); // Söndag 23:59:59, måndagen inkluderas ej
+        return (start, end);
+    }
+
+    // Räknar ut totala minuter denna vecka för alla sessioner
+    public int MinutesThisWeek()
+    {
+        var (start, end) = WeekBounds(DateTime.Today);
+        var total = 0;
+        foreach (var s in _sessions)
+        {
+            if (s.StartTime >= start && s.EndTime < end)
+                total += s.DurationMinutes;
+        }
+        return total;
+    }
+
 }
