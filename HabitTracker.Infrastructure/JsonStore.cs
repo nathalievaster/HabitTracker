@@ -88,6 +88,16 @@ public class JsonStore
         Save();
         return true;
     }
+    
+    // Uppdatera namnet för en vana
+    public bool UpdateHabitName(Guid id, string newName)
+    {
+        var h = GetHabit(id);
+        if (h == null) return false;
+        h.Name = newName;
+        Save();
+        return true;
+    }
 
     //Sessions
 
