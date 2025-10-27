@@ -209,6 +209,16 @@ class Program
             Console.ResetColor();
         }
 
+        // Hämtar vanan
+        var habit = store.GetHabit(habitId);
+        if (habit is null)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Hittade inte vanan.");
+            Console.ResetColor();
+            return;
+        }
+
         var sessions = store.GetSessionsForHabit(habitId);
         if (sessions.Count == 0)
         {
@@ -217,6 +227,10 @@ class Program
             Console.ResetColor();
             return;
         }
+
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine($"\nSessioner för: {habit.Name}");
+        Console.ResetColor();
 
         foreach (var s in sessions)
         {

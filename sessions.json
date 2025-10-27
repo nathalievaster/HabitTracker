@@ -6,5 +6,21 @@
     "EndTime": "2025-10-25T18:27:40.8699379+02:00",
     "DurationMinutes": 20,
     "Notes": "Kunde inte koncentrera mig efter 20 minuter"
+  },
+  {
+    "Id": "62d9e57f-6962-4a3f-aac7-c78271328866",
+    "HabitId": "475895df-9e16-4d79-96dd-72132677fb93",
+    "StartTime": "2025-10-27T09:23:14.8826097+01:00",
+    "EndTime": "2025-10-27T09:48:14.8826097+01:00",
+    "DurationMinutes": 25,
+    "Notes": "Bra koncentration idag"
+  },
+  {
+    "Id": "601bdc2a-e586-462e-b912-b2bb2f7ca855",
+    "HabitId": "475895df-9e16-4d79-96dd-72132677fb93",
+    "StartTime": "2025-10-27T09:50:48.8119624+01:00",
+    "EndTime": "2025-10-27T10:00:48.8119624+01:00",
+    "DurationMinutes": 10,
+    "Notes": "K\u00F6rde 10 extra"
   }
 ]
