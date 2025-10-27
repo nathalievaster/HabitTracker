@@ -1,5 +1,5 @@
 using System.Text.Json;
-using HabitTracker.Domain;
+using HabitTracker.Domain.Models;
 
 namespace HabitTracker.Infrastructure;
 

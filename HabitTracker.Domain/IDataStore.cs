@@ -1,4 +1,4 @@
-namespace HabitTracker.Domain;
+namespace HabitTracker.Domain.Models;
 
 // Interface för hur datalagringen ska se ut
 public interface IDataStore

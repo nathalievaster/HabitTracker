@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using HabitTracker.Domain;
+using HabitTracker.Domain.Models;
 using HabitTracker.Infrastructure;
 
 class Program
