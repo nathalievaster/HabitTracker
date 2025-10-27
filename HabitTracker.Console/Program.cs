@@ -1,10 +1,12 @@
-﻿using HabitTracker.Infrastructure;
+﻿using System.Data;
+using HabitTracker.Domain;
+using HabitTracker.Infrastructure;
 
 class Program
 {
     static void Main()
     {
-        var store = new JsonStore(); // Skapar en instans av JsonStore för att hantera data
+        IDataStore store = new JsonStore(); // Skapar en instans av JsonStore för att hantera data
 
         while (true)
         {
@@ -67,7 +69,7 @@ class Program
     }
 
     //--------Skapa vanor--------
-    static void CreateHabit(JsonStore store)
+    static void CreateHabit(IDataStore store)
     {
         string name = "";
 
@@ -112,7 +114,7 @@ class Program
         }
     }
     // --------Lista vanor--------
-    static void ListHabits(JsonStore store)
+    static void ListHabits(IDataStore store)
     {
         var habits = store.GetHabits();
         if (habits.Count == 0)
@@ -131,7 +133,7 @@ class Program
     }
 
     // --------Logga pomodoro--------
-    static void LogPomodoro(JsonStore store)
+    static void LogPomodoro(IDataStore store)
     {
         Guid habitId;
 
@@ -182,7 +184,7 @@ class Program
         Console.ResetColor();
     }
     // --------Visa veckans minuter--------
-    static void ShowMinutesThisWeek(JsonStore store)
+    static void ShowMinutesThisWeek(IDataStore store)
     {
         var minutes = store.MinutesThisWeek();
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -190,7 +192,7 @@ class Program
         Console.ResetColor();
     }
     // --------Visa sessions för en vana--------
-    static void ShowSessionsForHabit(JsonStore store)
+    static void ShowSessionsForHabit(IDataStore store)
     {
         Guid habitId;
 
@@ -224,7 +226,7 @@ class Program
         }
     }
     // --------Byt namn på vana--------
-    static void RenameHabit(JsonStore store)
+    static void RenameHabit(IDataStore store)
     {
         Guid habitId;
 
@@ -271,7 +273,7 @@ class Program
         }
     }
     // --------Ändra mål/vecka--------
-    static void UpdateHabitTarget(JsonStore store)
+    static void UpdateHabitTarget(IDataStore store)
     {
         Guid habitId;
 
@@ -320,7 +322,7 @@ class Program
         }
     }
     // --------Ta bort vana--------
-    static void DeleteHabit(JsonStore store)
+    static void DeleteHabit(IDataStore store)
     {
         Guid id;
 

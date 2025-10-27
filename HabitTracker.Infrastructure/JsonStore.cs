@@ -3,7 +3,7 @@ using HabitTracker.Domain;
 
 namespace HabitTracker.Infrastructure;
 
-public class JsonStore
+public class JsonStore : IDataStore
 {
     // Skapar variabler för filvägar till JSON-filerna (Readonly låser dem efter initiering)
     private readonly string _habitsPath;
@@ -88,7 +88,7 @@ public class JsonStore
         Save();
         return true;
     }
-    
+
     // Uppdatera namnet för en vana
     public bool UpdateHabitName(Guid id, string newName)
     {
