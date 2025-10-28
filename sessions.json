@@ -22,5 +22,13 @@
     "EndTime": "2025-10-27T10:00:48.8119624+01:00",
     "DurationMinutes": 10,
     "Notes": "K\u00F6rde 10 extra"
+  },
+  {
+    "Id": "72bac8cf-b9bd-40ec-a6f2-42dadd581b49",
+    "HabitId": "475895df-9e16-4d79-96dd-72132677fb93",
+    "StartTime": "2025-10-28T17:52:58.1894554+01:00",
+    "EndTime": "2025-10-28T18:17:58.1894554+01:00",
+    "DurationMinutes": 25,
+    "Notes": null
   }
 ]
