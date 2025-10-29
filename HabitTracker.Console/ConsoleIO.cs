@@ -3,6 +3,7 @@ using System;
 // Klass som hanterar input och output i konsolen
 static class ConsoleIO
 {
+    // Metod för att hantera tomma strängar
     public static string ReadNonEmpty(string prompt)
     {
         while (true)
@@ -13,7 +14,7 @@ static class ConsoleIO
             WriteError("Fältet får inte vara tomt. Försök igen.");
         }
     }
-
+    // Metod för att läsa in ett positivt heltal
     public static int ReadPositiveInt(string prompt)
     {
         while (true)
@@ -24,7 +25,7 @@ static class ConsoleIO
             WriteError("Felaktigt tal. Ange ett positivt heltal.");
         }
     }
-
+    // Metod för att läsa in ett heltal eller använda standardvärde
     public static int ReadIntOrDefault(string prompt, int @default, int min = 1)
     {
         Console.Write(prompt);
@@ -38,7 +39,7 @@ static class ConsoleIO
         WriteWarn($"Felaktigt tal. Använder {@default} som standard.");
         return @default;
     }
-
+    // Metod för att läsa in ett GUID
     public static Guid ReadGuid(string prompt)
     {
         while (true)
@@ -49,7 +50,7 @@ static class ConsoleIO
             WriteError("Felaktigt Id. Försök igen.");
         }
     }
-
+    // Metoder för att skriva ut med olika färger
     public static void WriteColor(ConsoleColor color, string text)
     {
         var old = Console.ForegroundColor;
