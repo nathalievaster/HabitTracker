@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        IDataStore store = new JsonStore();
+        IDataStore store = new SqliteStore("habits.db");
 
         while (true)
         {
