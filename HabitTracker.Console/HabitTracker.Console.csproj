@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\HabitTracker.Application\HabitTracker.Application.csproj" />
     <ProjectReference Include="..\HabitTracker.Domain\HabitTracker.Domain.csproj" />
     <ProjectReference Include="..\HabitTracker.Infrastructure\HabitTracker.Infrastructure.csproj" />
   </ItemGroup>
